@@ -5,6 +5,7 @@
 <title>Timeless Timesheet Tracker</title>
 </head>
 <body>
+
 <form method="post" action="/home">
 <table>
 <tr>
@@ -19,17 +20,24 @@
 <th>Total</th>
 </tr>
 <tr>
-<td><input autofocus type="date" name = "weekOf"></input></td>
-<td><input autofocus type="number" name = "Sunday"></input></td>
-<td><input autofocus type="number" name = "Monday"></input></td>
-<td><input autofocus type="number" name = "Tueday"></input></td>
-<td><input autofocus type="number" name = "Wednesday"></input></td>
-<td><input autofocus type="number" name = "Thursday"></input></td>
-<td><input autofocus type="number" name = "Friday"></input></td>
-<td><input autofocus type="number" name = "Saturday"></input></td>
-<td></td>
-<td><button>Update</button></td>
-<td><button>Submit</button></td>
+<td><input autofocus required type="date" id="week" name="week"></td>
+<td><input type="number" name = "Sunday"></td>
+<td><input type="number" name = "Monday"></td>
+<td><input type="number" name = "Tueday"></td>
+<td><input type="number" name = "Wednesday"></td>
+<td><input type="number" name = "Thursday"></td>
+<td><input type="number" name = "Friday"></td>
+<td><input type="number" name = "Saturday"></td>
+<td>totalgoeshere</td>
+
+<td>
+
+<button>Update</button>
+
+</td>
+<td>
+
+<button>Submit</button></td>
 </tr>
 </table>
 </form>
