@@ -14,7 +14,13 @@ public class TimeEntries {
 	// MM/dd/yyyy
 	private Date week;
 	public String simpleWeek;
-	private double Sunday = 0; 
+	private double Sunday = 0;
+	private double Monday = 0; 
+	private double Tuesday = 0; 
+	private double Wednesday = 0; 
+	private double Thursday = 0; 
+	private double Friday = 0; 
+	private double Saturday = 0; 
 	
 	public int getId() {
 		return id;
@@ -32,6 +38,53 @@ public class TimeEntries {
 		return Sunday;
 	}
 	
+	public void setMonday(double Monday) {
+		this.Monday = Monday;
+	}
+	
+	public double getMonday() {
+		return Monday;
+	}
+	
+	public void setTuesday(double Tuesday) {
+		this.Tuesday = Tuesday;
+	}
+	
+	public double getTuesday() {
+		return Tuesday;
+	}
+	
+	public void setWednesday(double Wednesday) {
+		this.Wednesday = Wednesday;
+	}
+	
+	public double getWednesday() {
+		return Wednesday;
+	}
+	
+	public void setThursday(double Thursday) {
+		this.Thursday = Thursday;
+	}
+	
+	public double getThursday() {
+		return Thursday;
+	}
+	
+	public void setFriday(double Friday) {
+		this.Friday = Friday;
+	}
+	
+	public double getFriday() {
+		return Friday;
+	}
+	
+	public void setSaturday(double Saturday) {
+		this.Saturday = Saturday;
+	}
+	
+	public double getSaturday() {
+		return Saturday;
+	}
 	public String getSimpleDate() {
 		
 		System.out.println(getWeek());

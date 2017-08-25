@@ -32,7 +32,14 @@ public class TimeControllerService {
 		try (FileWriter writer = new FileWriter("timesheet.csv" , true);
 				CSVPrinter printer = CSVFormat.DEFAULT.print(writer)) {
 			String week = entry.getSimpleDate();
-			String[] timeEntry = {Integer.toString(entry.getId()), entry.getSimpleDate()};
+			String[] timeEntry = {Integer.toString(entry.getId()), entry.getSimpleDate(), 
+					Double.toString(entry.getSunday()),
+					Double.toString(entry.getMonday()),
+					Double.toString(entry.getTuesday()),
+					Double.toString(entry.getWednesday()),
+					Double.toString(entry.getThursday()),
+					Double.toString(entry.getFriday()),
+					Double.toString(entry.getSaturday())};
 //			String[] timeEntry = {Integer.toString(entry.getId()), week};
 			System.out.println("tried to print");
 			
