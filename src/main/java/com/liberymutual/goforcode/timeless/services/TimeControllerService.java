@@ -25,11 +25,13 @@ public class TimeControllerService {
 
 	public List<TimeEntries> getAll() {
 		
+		if (entries.size() == 0 ) {
+		
 		try (Reader in = new FileReader("timesheet.csv")){
-			Iterable<CSVRecord> records = null;
-			records = CSVFormat.DEFAULT.parse(in);
 			
-			for(CSVRecord record : records) {
+			
+			
+			for(CSVRecord record : CSVFormat.DEFAULT.parse(in).getRecords()) {
 				TimeEntries entry = new TimeEntries();
 				int tempId = Integer.parseInt(record.get(0));
 				entry.setId(tempId);
@@ -41,8 +43,9 @@ public class TimeControllerService {
 				entry.setThursday(Double.parseDouble(record.get(6)));
 				entry.setFriday(Double.parseDouble(record.get(7)));
 				entry.setSaturday(Double.parseDouble(record.get(8)));
-//				entry.setTotalHours(entry.getTotalHours());
+				entry.setTotalHours(entry.getTotalHours());
 				entries.add(entry);
+				nextId += 1;
 			}
 			
 		} catch (FileNotFoundException e) {
@@ -50,8 +53,8 @@ public class TimeControllerService {
 		} catch (IOException e) {
 			System.out.print("failed to get entries");
 		} 
-		
-		System.out.print("GetAll is w6orking");
+		}
+		System.out.print("GetAll is working");
 		return entries;
 	}
 	

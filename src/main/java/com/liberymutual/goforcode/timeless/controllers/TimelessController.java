@@ -36,6 +36,10 @@ public class TimelessController {
 		List<TimeEntries> entries = service.getAll();
 		mv.addObject("timeEntries", entries);
 		
+		for (TimeEntries entry : entries) {
+			System.out.println(entry);
+		}
+		
 //		if (entries.size() != 0) {
 					
 //		mv.addObject("timeEntries", entries);

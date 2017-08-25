@@ -15,7 +15,7 @@ public class TimeEntries {
 	@DateTimeFormat(pattern = "yyyy-MM-dd") 
 	// MM/dd/yyyy
 	private Date week;
-	public String simpleWeek;
+//	public String simpleWeek;
 	private double Sunday = 0;
 	private double Monday = 0; 
 	private double Tuesday = 0; 
@@ -23,7 +23,13 @@ public class TimeEntries {
 	private double Thursday = 0; 
 	private double Friday = 0; 
 	private double Saturday = 0; 
-	private double totalHours = 0;
+	private double totalHours;
+	
+	
+	@Override
+	public String toString() {
+		return Integer.toString(id) + week + Double.toString(Sunday) + Double.toString(Monday) + Double.toString(Tuesday) + Double.toString(Wednesday) + Double.toString(Thursday) + Double.toString(Friday) + Double.toString(Saturday) + Double.toString(totalHours);
+	}
 	
 	public void getHours() {
 		TimeControllerService service = new TimeControllerService();
@@ -97,24 +103,29 @@ public class TimeEntries {
 	
 	public String getSimpleWeek() {
 		
-		System.out.println(getWeek());
-		System.out.println("begin");
+//		System.out.println(getWeek());
+//		System.out.println("begin");
 		SimpleDateFormat formatDate = new SimpleDateFormat("MM/dd/yyyy");
-		System.out.println("mid");
+//		System.out.println("mid");
 //		Date week = getWeek();
 		String simpleWeek = formatDate.format(getWeek());
 		
 		
 //		simpleWeek = formatDate.format(week);
 		
-		System.out.println("just before check");
-		System.out.println(simpleWeek);
+//		System.out.println("just before check");
+//		System.out.println(simpleWeek);
 		return simpleWeek;
 				
 	}
 	
 	public void setSimpleWeek(String simpleWeek) {
-		this.simpleWeek = simpleWeek;
+		SimpleDateFormat formatDate = new SimpleDateFormat("MM/dd/yyyy");
+		try {
+			week = formatDate.parse(simpleWeek);
+		} catch (ParseException e) {
+			System.out.println("Simple date failure");
+		}
 	}
 	
 	public Date getWeek() {
@@ -132,8 +143,11 @@ public class TimeEntries {
 		return totalHours;
 	}
 	
-	public void setTotalHours() {
+	public void setTotalHours(double totalHours) {
 		this.totalHours = totalHours;
 	}
+	
+	
+
 	
 }
