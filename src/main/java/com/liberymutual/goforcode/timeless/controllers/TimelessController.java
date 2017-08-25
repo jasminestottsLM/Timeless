@@ -1,6 +1,7 @@
 package com.liberymutual.goforcode.timeless.controllers;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +19,8 @@ public class TimelessController {
 
 	private TimeControllerService service;
 	private Date week;
-	
+	private TimeEntries deletemesoon;
+		
 	public TimelessController(TimeControllerService service) {
 		this.service = service;
 	}
@@ -31,17 +33,34 @@ public class TimelessController {
 	@GetMapping("home") 
 	public ModelAndView timeEntries() {
 		ModelAndView mv = new ModelAndView("timeless/default");
-//		List<Entries> entries = service.getAll();
+		List<TimeEntries> entries = service.getAll();
+		mv.addObject("timeEntries", entries);
 		
+//		if (entries.size() != 0) {
+					
 //		mv.addObject("timeEntries", entries);
+		
+//		double sum = service.add(deletemesoon);	
+//		mv.addObject("sum", sum);
+//		}
+		
 		return mv;
 	}	
 	
-
 	@PostMapping("home") 
-	public String createEntry(TimeEntries entry) {
-		service.create(entry);
+	public String timeStuff(TimeEntries entry, String button) {
+		deletemesoon = entry;
+		if (button.equals("update")) {
+			double sum = service.add(entry);	
+			System.out.println("got to this point with sum = " + sum);
+		} else {
+			service.add(entry);
+			service.create(entry);
+			
+		}
+		
 		return "redirect:/home";
 	}
+	
 	
 }

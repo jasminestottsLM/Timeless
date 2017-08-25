@@ -21,23 +21,23 @@
 </tr>
 <tr>
 <td><input autofocus required type="date" id="week" name="week"></td>
-<td><input type="number" name = "Sunday"></td>
-<td><input type="number" name = "Monday"></td>
-<td><input type="number" name = "Tuesday"></td>
-<td><input type="number" name = "Wednesday"></td>
-<td><input type="number" name = "Thursday"></td>
-<td><input type="number" name = "Friday"></td>
-<td><input type="number" name = "Saturday"></td>
-<td>totalgoeshere</td>
+<td><input type="number" value=0 name = "Sunday"></td>
+<td><input type="number" value=0 name = "Monday"></td>
+<td><input type="number" value=0 name = "Tuesday"></td>
+<td><input type="number" value=0 name = "Wednesday"></td>
+<td><input type="number" value=0 name = "Thursday"></td>
+<td><input type="number" value=0 name = "Friday"></td>
+<td><input type="number" value=0 name = "Saturday"></td>
+<td> {{ #sum }}{{ sum }}{{ /sum }}</td>
 
 <td>
 
-<button>Update</button>
+<button name="button" value="update">Update</button>
 
 </td>
 <td>
 
-<button>Submit</button></td>
+<button name="button" value="submit">Submit</button></td>
 </tr>
 </table>
 </form>
@@ -57,8 +57,12 @@
 <tr>
 <td>
 {{ #timeEntries }}
+<tr>
 
+<td> {{ Sunday }} </td>
+<td> {{ Monday }} </td>
 
+</tr>
 {{ /timeEntries }}
 </td>
 </tr>

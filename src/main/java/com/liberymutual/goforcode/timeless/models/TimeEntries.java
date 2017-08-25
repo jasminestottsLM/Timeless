@@ -7,6 +7,8 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.liberymutual.goforcode.timeless.services.TimeControllerService;
+
 public class TimeEntries {
 
 	private int id;
@@ -21,6 +23,12 @@ public class TimeEntries {
 	private double Thursday = 0; 
 	private double Friday = 0; 
 	private double Saturday = 0; 
+	private double totalHours = 0;
+	
+	public void getHours() {
+		TimeControllerService service = new TimeControllerService();
+//		Hours = service.add(entry);
+	}
 	
 	public int getId() {
 		return id;
@@ -85,7 +93,9 @@ public class TimeEntries {
 	public double getSaturday() {
 		return Saturday;
 	}
-	public String getSimpleDate() {
+	
+	
+	public String getSimpleWeek() {
 		
 		System.out.println(getWeek());
 		System.out.println("begin");
@@ -103,6 +113,10 @@ public class TimeEntries {
 				
 	}
 	
+	public void setSimpleWeek(String simpleWeek) {
+		this.simpleWeek = simpleWeek;
+	}
+	
 	public Date getWeek() {
 		System.out.println("got week? " + week);
 		return week;
@@ -113,5 +127,13 @@ public class TimeEntries {
 		this.week = week;
 	}
 	
+	public Double getTotalHours() {
+		totalHours = Sunday + Monday + Tuesday + Wednesday + Thursday + Friday + Saturday;
+		return totalHours;
+	}
+	
+	public void setTotalHours() {
+		this.totalHours = totalHours;
+	}
 	
 }
