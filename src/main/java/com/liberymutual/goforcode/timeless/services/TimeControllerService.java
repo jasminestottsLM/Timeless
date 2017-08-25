@@ -32,7 +32,7 @@ public class TimeControllerService {
 		try (FileWriter writer = new FileWriter("timesheet.csv" , true);
 				CSVPrinter printer = CSVFormat.DEFAULT.print(writer)) {
 			String week = entry.getSimpleDate();
-			String[] timeEntry = {Integer.toString(entry.getId())};
+			String[] timeEntry = {Integer.toString(entry.getId()), entry.getSimpleDate()};
 //			String[] timeEntry = {Integer.toString(entry.getId()), week};
 			System.out.println("tried to print");
 			
