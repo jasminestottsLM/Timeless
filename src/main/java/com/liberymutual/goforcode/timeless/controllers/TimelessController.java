@@ -54,7 +54,7 @@ public class TimelessController {
 			double sum = service.add(entry);	
 			System.out.println("got to this point with sum = " + sum);
 		} else {
-			service.add(entry);
+//			service.add(entry);
 			service.create(entry);
 			
 		}
