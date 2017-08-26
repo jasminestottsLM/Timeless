@@ -19,7 +19,7 @@ import com.liberymutual.goforcode.timeless.models.TimeEntries;
 @Service
 public class TimelessService {
 
-	private int nextId = 1;
+	private int nextId = 0;
 	public int sizeOfArray;
 	
 	
@@ -31,8 +31,6 @@ public class TimelessService {
 		if (entries.size() == 0 ) {
 		
 		try (Reader in = new FileReader("timesheet.csv")){
-			
-			
 			
 			for(CSVRecord record : CSVFormat.DEFAULT.parse(in).getRecords()) {
 				TimeEntries entry = new TimeEntries();
@@ -59,29 +57,49 @@ public class TimelessService {
 		}
 		
 		sizeOfArray = entries.size();
-		System.out.print("GetAll is working" + entries + "Array size " + sizeOfArray);
 		return entries;
 	}
+
+	
+	public List<TimeEntries> reverseArray() {
+		
+		List<TimeEntries> entries = getAll();
+		
+		List<TimeEntries> reverseEntries = new ArrayList<TimeEntries>();
+			
+		if (reverseEntries.size() == 0 ) {
+		int countRemainingEntries = reverseEntries.size();
+		
+		for (TimeEntries entry : entries) {
+			if (entry.getId() == countRemainingEntries) {
+				reverseEntries.add(entry);
+				countRemainingEntries +=1;
+			}
+		}
+		}
+		System.out.println("Did this reverse the array?" + reverseEntries);
+		return reverseEntries;
+	}
+
 	
 	public Date currentDate(TimeEntries entry) {
 		Date currentDate = entry.getWeek();
 		return currentDate;
 	}
 	
+	
 	public double add(TimeEntries entry) {
 		double sum = entry.getSunday() + entry.getMonday() + entry.getTuesday() + entry.getWednesday() + entry.getThursday() + entry.getFriday() + entry.getSaturday(); 
-		System.out.println("Adding works?" + sum);
 		return sum;
 	}
 	
 	public void create(TimeEntries entry) {
-		System.out.println("tried to create");
-		entry.setId(nextId);
+		nextId = sizeOfArray;
 		nextId += 1;
 		
-		System.out.println(entry.getSunday());
+		entry.setId(nextId);
+		
 		Date tempWeek = entry.getWeek();
-		System.out.println(tempWeek);
 		// don't forget to increment once list is established by stopping and restarting program
 		
 		try (FileWriter writer = new FileWriter("timesheet.csv" , true);

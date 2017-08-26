@@ -73,7 +73,9 @@ public class TimelessController {
 	@PostMapping("home") 
 	public String timeStuff(TimeEntries entry, String button) {
 		deletemesoon = entry;
-		if (button.equals("update")) {
+		if (button.equals("submit")) {
+			service.create(entry);
+		}
 			double sum = service.add(entry);
 			double Sunday = entry.getSunday();
 			double Monday = entry.getMonday();
@@ -94,16 +96,10 @@ public class TimelessController {
 			currentFriday = Friday;
 			currentSaturday = Saturday;
 			System.out.println("got to this point with sum = " + sum);
-			return "redirect:/home";
-		} else {
-//			service.add(entry);
-			service.create(entry);
-			return "redirect:/home";
-			
+			return "redirect:/home";			
 		}
 		
-		
+	
 	}
 	
 	
-}
