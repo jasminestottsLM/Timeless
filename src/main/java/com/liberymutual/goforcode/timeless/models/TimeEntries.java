@@ -7,7 +7,7 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.liberymutual.goforcode.timeless.services.TimeControllerService;
+import com.liberymutual.goforcode.timeless.services.TimelessService;
 
 public class TimeEntries {
 
@@ -32,7 +32,7 @@ public class TimeEntries {
 	}
 	
 	public void getHours() {
-		TimeControllerService service = new TimeControllerService();
+		TimelessService service = new TimelessService();
 //		Hours = service.add(entry);
 	}
 	
@@ -103,20 +103,9 @@ public class TimeEntries {
 	
 	public String getSimpleWeek() {
 		
-//		System.out.println(getWeek());
-//		System.out.println("begin");
 		SimpleDateFormat formatDate = new SimpleDateFormat("MM/dd/yyyy");
-//		System.out.println("mid");
-//		Date week = getWeek();
 		String simpleWeek = formatDate.format(getWeek());
-		
-		
-//		simpleWeek = formatDate.format(week);
-		
-//		System.out.println("just before check");
-//		System.out.println(simpleWeek);
-		return simpleWeek;
-				
+		return simpleWeek;				
 	}
 	
 	public void setSimpleWeek(String simpleWeek) {
@@ -126,6 +115,12 @@ public class TimeEntries {
 		} catch (ParseException e) {
 			System.out.println("Simple date failure");
 		}
+	}
+	
+	public String getHTMLDate() {
+		SimpleDateFormat formatHTMLDate = new SimpleDateFormat("yyyy-MM-dd");
+		String htmlDate = formatHTMLDate.format(getWeek());
+		return htmlDate;				
 	}
 	
 	public Date getWeek() {

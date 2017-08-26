@@ -11,17 +11,26 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.liberymutual.goforcode.timeless.models.TimeEntries;
-import com.liberymutual.goforcode.timeless.services.TimeControllerService;
+import com.liberymutual.goforcode.timeless.services.TimelessService;
 
 @Controller
 @RequestMapping("/")
 public class TimelessController {
 
-	private TimeControllerService service;
+	private TimelessService service;
 	private Date week;
 	private TimeEntries deletemesoon;
-		
-	public TimelessController(TimeControllerService service) {
+	private double currentSum;
+	private double currentSunday;
+	private double currentMonday;
+	private double currentTuesday;
+	private double currentWednesday;
+	private double currentThursday;
+	private double currentFriday;
+	private double currentSaturday;
+	private String currentWeek;
+	
+	public TimelessController(TimelessService service) {
 		this.service = service;
 	}
 	
@@ -35,7 +44,15 @@ public class TimelessController {
 		ModelAndView mv = new ModelAndView("timeless/default");
 		List<TimeEntries> entries = service.getAll();
 		mv.addObject("timeEntries", entries);
-		
+		mv.addObject("sum", currentSum);
+		mv.addObject("currentWeek", currentWeek);
+		mv.addObject("currentSunday", currentSunday);
+		mv.addObject("currentMonday", currentMonday);
+		mv.addObject("currentTuesday", currentTuesday);
+		mv.addObject("currentWednesday", currentWednesday);
+		mv.addObject("currentThursday", currentThursday);
+		mv.addObject("currentFriday", currentFriday);
+		mv.addObject("currentSaturday", currentSaturday);
 		for (TimeEntries entry : entries) {
 			System.out.println(entry);
 		}
@@ -55,7 +72,25 @@ public class TimelessController {
 	public String timeStuff(TimeEntries entry, String button) {
 		deletemesoon = entry;
 		if (button.equals("update")) {
-			double sum = service.add(entry);	
+			double sum = service.add(entry);
+			double Sunday = entry.getSunday();
+			double Monday = entry.getMonday();
+			double Tuesday = entry.getTuesday();
+			double Wednesday = entry.getWednesday();
+			double Thursday = entry.getThursday();
+			double Friday = entry.getFriday();
+			double Saturday = entry.getSaturday();
+			String altCurrentWeek = entry.getHTMLDate();
+			System.out.println("current week value is " + altCurrentWeek);
+			currentSum = sum;
+			currentWeek = altCurrentWeek;
+			currentSunday = Sunday;
+			currentMonday = Monday;
+			currentTuesday = Tuesday;
+			currentWednesday = Wednesday;
+			currentThursday = Thursday;
+			currentFriday = Friday;
+			currentSaturday = Saturday;
 			System.out.println("got to this point with sum = " + sum);
 		} else {
 //			service.add(entry);

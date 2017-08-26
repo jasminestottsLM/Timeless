@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 import com.liberymutual.goforcode.timeless.models.TimeEntries;
 
 @Service
-public class TimeControllerService {
+public class TimelessService {
 
 	private int nextId = 1;
 	
@@ -58,8 +58,13 @@ public class TimeControllerService {
 		return entries;
 	}
 	
+	public Date currentDate(TimeEntries entry) {
+		Date currentDate = entry.getWeek();
+		return currentDate;
+	}
+	
 	public double add(TimeEntries entry) {
-		double sum = entry.getSunday() + entry.getMonday();
+		double sum = entry.getSunday() + entry.getMonday() + entry.getTuesday() + entry.getWednesday() + entry.getThursday() + entry.getFriday() + entry.getSaturday(); 
 		System.out.println("Adding works?" + sum);
 		return sum;
 	}

@@ -20,14 +20,15 @@
 <th>Total</th>
 </tr>
 <tr>
-<td><input autofocus required type="date" id="week" name="week"></td>
-<td><input type="number" value=0 name = "Sunday"></td>
-<td><input type="number" value=0 name = "Monday"></td>
-<td><input type="number" value=0 name = "Tuesday"></td>
-<td><input type="number" value=0 name = "Wednesday"></td>
-<td><input type="number" value=0 name = "Thursday"></td>
-<td><input type="number" value=0 name = "Friday"></td>
-<td><input type="number" value=0 name = "Saturday"></td>
+
+<td><input autofocus required type="date" id="week" name="week" value="{{ #currentWeek }}{{ currentWeek }}{{ /currentWeek }}"></td>
+<td><input type="number" value="{{ #currentSunday }}{{ currentSunday }}{{ /currentSunday }}" name = "Sunday"></td>
+<td><input type="number" value="{{ #currentMonday }}{{ currentMonday }}{{ /currentMonday }}" name = "Monday"></td>
+<td><input type="number" value="{{ #currentTuesday }}{{ currentTuesday }}{{ /currentTuesday }}" name = "Tuesday"></td>
+<td><input type="number" value="{{ #currentWednesday }}{{ currentWednesday }}{{ /currentWednesday }}" name = "Wednesday"></td>
+<td><input type="number" value="{{ #currentThursday }}{{ currentThursday }}{{ /currentThursday }}" name = "Thursday"></td>
+<td><input type="number" value="{{ #currentFriday }}{{ currentFriday }}{{ /currentFriday }}" name = "Friday"></td>
+<td><input type="number" value="{{ #currentSaturday }}{{ currentSaturday }}{{ /currentSaturday }}" name = "Saturday"></td>
 <td> {{ #sum }}{{ sum }}{{ /sum }}</td>
 
 <td>
