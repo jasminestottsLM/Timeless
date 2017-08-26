@@ -43,7 +43,9 @@ public class TimelessController {
 	public ModelAndView timeEntries() {
 		ModelAndView mv = new ModelAndView("timeless/default");
 		List<TimeEntries> entries = service.getAll();
+		System.out.println(currentTuesday);
 		mv.addObject("timeEntries", entries);
+		
 		mv.addObject("sum", currentSum);
 		mv.addObject("currentWeek", currentWeek);
 		mv.addObject("currentSunday", currentSunday);
@@ -92,13 +94,15 @@ public class TimelessController {
 			currentFriday = Friday;
 			currentSaturday = Saturday;
 			System.out.println("got to this point with sum = " + sum);
+			return "redirect:/home";
 		} else {
 //			service.add(entry);
 			service.create(entry);
+			return "redirect:/home";
 			
 		}
 		
-		return "redirect:/home";
+		
 	}
 	
 	

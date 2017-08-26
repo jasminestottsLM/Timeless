@@ -20,10 +20,13 @@ import com.liberymutual.goforcode.timeless.models.TimeEntries;
 public class TimelessService {
 
 	private int nextId = 1;
+	public int sizeOfArray;
 	
-	List<TimeEntries> entries = new ArrayList<TimeEntries>();
+	
 
 	public List<TimeEntries> getAll() {
+		
+		List<TimeEntries> entries = new ArrayList<TimeEntries>();
 		
 		if (entries.size() == 0 ) {
 		
@@ -54,7 +57,9 @@ public class TimelessService {
 			System.out.print("failed to get entries");
 		} 
 		}
-		System.out.print("GetAll is working");
+		
+		sizeOfArray = entries.size();
+		System.out.print("GetAll is working" + entries + "Array size " + sizeOfArray);
 		return entries;
 	}
 	
@@ -80,9 +85,9 @@ public class TimelessService {
 		// don't forget to increment once list is established by stopping and restarting program
 		
 		try (FileWriter writer = new FileWriter("timesheet.csv" , true);
-				CSVPrinter printer = CSVFormat.DEFAULT.print(writer)) {
+				CSVPrinter printer = CSVFormat.DEFAULT.print(writer)) { 
 			String week = entry.getSimpleWeek();
-			String[] timeEntry = {Integer.toString(entry.getId()), entry.getSimpleWeek(), 
+			String [] timeEntry = {Integer.toString(entry.getId()), entry.getSimpleWeek(), 
 					Double.toString(entry.getSunday()),
 					Double.toString(entry.getMonday()),
 					Double.toString(entry.getTuesday()),
