@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class TimelessService {
 
 	private int nextId = 0;
 	public int sizeOfArray;
-	
+	public int reverseId;
 	
 
 	public List<TimeEntries> getAll() {
@@ -33,6 +34,7 @@ public class TimelessService {
 		try (Reader in = new FileReader("timesheet.csv")){
 			
 			for(CSVRecord record : CSVFormat.DEFAULT.parse(in).getRecords()) {
+				
 				TimeEntries entry = new TimeEntries();
 				int tempId = Integer.parseInt(record.get(0));
 				entry.setId(tempId);
@@ -59,27 +61,18 @@ public class TimelessService {
 		sizeOfArray = entries.size();
 		return entries;
 	}
-
 	
-	public List<TimeEntries> reverseArray() {
-		
+	
+	
+
+public List<TimeEntries> reverseAll() {
+	
 		List<TimeEntries> entries = getAll();
+		Collections.reverse(entries); 
 		
-		List<TimeEntries> reverseEntries = new ArrayList<TimeEntries>();
-			
-		if (reverseEntries.size() == 0 ) {
-		int countRemainingEntries = reverseEntries.size();
-		
-		for (TimeEntries entry : entries) {
-			if (entry.getId() == countRemainingEntries) {
-				reverseEntries.add(entry);
-				countRemainingEntries +=1;
-			}
-		}
-		}
-		System.out.println("Did this reverse the array?" + reverseEntries);
-		return reverseEntries;
-	}
+		return entries;
+	
+}
 
 	
 	public Date currentDate(TimeEntries entry) {
@@ -115,8 +108,6 @@ public class TimelessService {
 					Double.toString(entry.getSaturday()),
 					Double.toString(entry.getTotalHours())
 			};
-//			String[] timeEntry = {Integer.toString(entry.getId()), week};
-			System.out.println("tried to print");
 			
 			printer.printRecord(timeEntry);
 			
@@ -124,6 +115,5 @@ public class TimelessService {
 			System.out.println("error on create");
 		}
 		
-		System.out.println("good create");
 	}
 }

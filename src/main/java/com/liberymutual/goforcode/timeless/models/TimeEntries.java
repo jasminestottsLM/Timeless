@@ -13,9 +13,7 @@ public class TimeEntries {
 
 	private int id;
 	@DateTimeFormat(pattern = "yyyy-MM-dd") 
-	// MM/dd/yyyy
 	private Date week;
-//	public String simpleWeek;
 	private double Sunday = 0;
 	private double Monday = 0; 
 	private double Tuesday = 0; 
@@ -33,7 +31,6 @@ public class TimeEntries {
 	
 	public void getHours() {
 		TimelessService service = new TimelessService();
-//		Hours = service.add(entry);
 	}
 	
 	public int getId() {
@@ -124,12 +121,10 @@ public class TimeEntries {
 	}
 	
 	public Date getWeek() {
-		System.out.println("got week? " + week);
 		return week;
 	}
 	
 	public void setWeek(Date week) {
-		System.out.println("set week? " + week);
 		this.week = week;
 	}
 	

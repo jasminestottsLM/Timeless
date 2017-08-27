@@ -43,8 +43,8 @@ public class TimelessController {
 	public ModelAndView timeEntries() {
 		ModelAndView mv = new ModelAndView("timeless/default");
 		List<TimeEntries> entries = service.getAll();
-		System.out.println(currentTuesday);
-		mv.addObject("timeEntries", entries);
+		List<TimeEntries> reverseEntries = service.reverseAll();
+		mv.addObject("timeEntries", reverseEntries);
 		
 		mv.addObject("sum", currentSum);
 		mv.addObject("currentWeek", currentWeek);
@@ -55,17 +55,6 @@ public class TimelessController {
 		mv.addObject("currentThursday", currentThursday);
 		mv.addObject("currentFriday", currentFriday);
 		mv.addObject("currentSaturday", currentSaturday);
-		for (TimeEntries entry : entries) {
-			System.out.println(entry);
-		}
-		
-//		if (entries.size() != 0) {
-					
-//		mv.addObject("timeEntries", entries);
-		
-//		double sum = service.add(deletemesoon);	
-//		mv.addObject("sum", sum);
-//		}
 		
 		return mv;
 	}	
@@ -85,7 +74,6 @@ public class TimelessController {
 			double Friday = entry.getFriday();
 			double Saturday = entry.getSaturday();
 			String altCurrentWeek = entry.getHTMLDate();
-			System.out.println("current week value is " + altCurrentWeek);
 			currentSum = sum;
 			currentWeek = altCurrentWeek;
 			currentSunday = Sunday;
@@ -95,7 +83,6 @@ public class TimelessController {
 			currentThursday = Thursday;
 			currentFriday = Friday;
 			currentSaturday = Saturday;
-			System.out.println("got to this point with sum = " + sum);
 			return "redirect:/home";			
 		}
 		
